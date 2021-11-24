@@ -1,29 +1,17 @@
 class AnnalynsInfiltration {
     public static boolean canFastAttack(boolean knightIsAwake) {
-        if (knightIsAwake) {
-            return false;
-        }
-        return true;
+        return !knightIsAwake;
     }
 
     public static boolean canSpy(boolean knightIsAwake, boolean archerIsAwake, boolean prisonerIsAwake) {
-        if (!knightIsAwake && !archerIsAwake && !prisonerIsAwake) {
-            return false;
-        }
-        return true;
+        return knightIsAwake || archerIsAwake || prisonerIsAwake;
     }
 
     public static boolean canSignalPrisoner(boolean archerIsAwake, boolean prisonerIsAwake) {
-        if (!archerIsAwake && prisonerIsAwake) {
-            return true;
-        }
-        return false;
+        return !archerIsAwake && prisonerIsAwake;
     }
 
     public static boolean canFreePrisoner(boolean knightIsAwake, boolean archerIsAwake, boolean prisonerIsAwake, boolean petDogIsPresent) {
-        if ((petDogIsPresent && !archerIsAwake) || (!knightIsAwake && !archerIsAwake && prisonerIsAwake)) {
-            return true;
-        }
-        return false;
+        return (petDogIsPresent && !archerIsAwake) || (!knightIsAwake && !archerIsAwake && prisonerIsAwake);
     }
 }
