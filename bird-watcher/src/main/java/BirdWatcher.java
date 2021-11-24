@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 class BirdWatcher {
     private final int[] birdsPerDay;
@@ -19,32 +20,17 @@ class BirdWatcher {
     }
 
     public boolean hasDayWithoutBirds() {
-        for (int bird:
-             birdsPerDay) {
-            if (bird == 0) {
-                return true;
-            }
-        }
-        return false;
+        //here starts some advanced magic that I discovered while exploring
+        return Arrays.binarySearch(birdsPerDay, 0) >= 0;
     }
 
     public int getCountForFirstDays(int numberOfDays) {
-        int limit = numberOfDays > birdsPerDay.length ? birdsPerDay.length : numberOfDays; //can be replaced by Math.min()
-        int sumOfBirds = 0;
-        for (int i = 0; i < limit; i++) {
-            sumOfBirds += birdsPerDay[i];
-        }
-        return sumOfBirds;
+        //functional
+        return Arrays.stream(birdsPerDay).limit(Math.min(numberOfDays, birdsPerDay.length)).sum();
     }
 
     public int getBusyDays() {
-        int busyDays = 0;
-        for (int day:
-            birdsPerDay){
-            if(day >= 5) {
-                busyDays++;
-            }
-        }
-        return busyDays;
+        //elegant
+       return (int) Arrays.stream(birdsPerDay).filter(i -> i >= 5).count();
     }
 }
