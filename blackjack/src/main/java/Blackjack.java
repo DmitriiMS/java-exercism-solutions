@@ -1,19 +1,40 @@
+import java.util.Map;
+
 public class Blackjack {
 
+    private final static Map<String, Integer> CARDS = Map.ofEntries(Map.entry("ace", 11),
+            Map.entry("two", 2),
+            Map.entry("three", 3),
+            Map.entry("four", 4),
+            Map.entry("five", 5),
+            Map.entry("six", 6),
+            Map.entry("seven", 7),
+            Map.entry("eight", 8),
+            Map.entry("nine", 9),
+            Map.entry("ten", 10),
+            Map.entry("jack", 10),
+            Map.entry("queen", 10),
+            Map.entry("king", 10),
+            Map.entry("other", 0));
+
+
     public int parseCard(String card) {
-        throw new UnsupportedOperationException("Please implement the Blackjack.parseCard method");
+        return CARDS.get(card);
     }
 
     public boolean isBlackjack(String card1, String card2) {
-        throw new UnsupportedOperationException("Please implement the Blackjack.isBlackjack method");
+        return parseCard(card1) + parseCard(card2) == 21;
     }
 
     public String largeHand(boolean isBlackjack, int dealerScore) {
-        throw new UnsupportedOperationException("Please implement the Blackjack.largeHand method");
+        if (!isBlackjack) {return "P";}
+        return dealerScore < 10 ? "W" : "S";
     }
 
     public String smallHand(int handScore, int dealerScore) {
-        throw new UnsupportedOperationException("Please implement the Blackjack.smallHand method");
+        if (handScore >= 17) { return "S"; }
+        if (handScore <= 11) { return "H"; }
+        return dealerScore >= 7 ? "H" : "S";
     }
 
     // FirstTurn returns the semi-optimal decision for the first turn, given the cards of the player and the dealer.
