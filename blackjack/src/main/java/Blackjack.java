@@ -27,14 +27,14 @@ public class Blackjack {
     }
 
     public String largeHand(boolean isBlackjack, int dealerScore) {
-        if (!isBlackjack) {return "P";}
+        if (!isBlackjack) return "P";
         return dealerScore < 10 ? "W" : "S";
     }
 
     public String smallHand(int handScore, int dealerScore) {
-        if (handScore >= 17) { return "S"; }
-        if (handScore <= 11) { return "H"; }
-        return dealerScore >= 7 ? "H" : "S";
+        if (handScore >= 17) return "S";
+        if (handScore <= 11 || dealerScore >= 7) return "H";
+        return "S";
     }
 
     // FirstTurn returns the semi-optimal decision for the first turn, given the cards of the player and the dealer.
