@@ -1,13 +1,23 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class TestTrack {
 
     public static void race(RemoteControlCar car) {
-        throw new UnsupportedOperationException("Please implement the (static) TestTrack.race() method");
+        car.drive();
     }
 
     public static List<ProductionRemoteControlCar> getRankedCars(ProductionRemoteControlCar prc1,
                                                                  ProductionRemoteControlCar prc2) {
-        throw new UnsupportedOperationException("Please implement the (static) TestTrack.getRankedCars() method");
+        List<ProductionRemoteControlCar> ranked = new ArrayList<>();
+        if (prc1.getNumberOfVictories() <= prc2.getNumberOfVictories()) {
+            ranked.add(prc1);
+            ranked.add(prc2);
+        } else {
+            ranked.add(prc2);
+            ranked.add(prc1);
+        }
+
+        return ranked;
     }
 }
