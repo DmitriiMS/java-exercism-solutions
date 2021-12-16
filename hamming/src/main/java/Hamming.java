@@ -1,8 +1,10 @@
+import java.util.stream.IntStream;
+
 public class Hamming {
 
-    private String left;
-    private String right;
-    private int distance = 0;
+    private final String left;
+    private final String right;
+    private final int distance;
 
     public Hamming(String leftStrand, String rightStrand) {
         if (!rightStrand.isEmpty() &&leftStrand.isEmpty()) {
@@ -16,11 +18,7 @@ public class Hamming {
         }
         left = leftStrand;
         right = rightStrand;
-        for (int i = 0; i < left.length(); i++) {
-            if (left.charAt(i) != right.charAt(i)) {
-                distance++;
-            }
-        }
+        distance = IntStream.range(0, left.length()).map(i -> left.charAt(i) != right.charAt(i) ? 1 : 0).sum();
     }
 
     public int getHammingDistance() {
