@@ -27,7 +27,7 @@ class DnDCharacter {
     }
 
     int modifier(int input) {
-        return (int) Math.floor((double) (input - 10) / 2);
+        return Math.floorDiv((input - 10), 2);
     }
 
     int getStrength() {
