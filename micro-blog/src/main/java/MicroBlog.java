@@ -1,5 +1,7 @@
 class MicroBlog {
     public String truncate(String input) {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        return input.codePoints().limit(5)
+                .mapToObj(i -> new String((Character.toChars(i))))
+                .reduce("", String::concat);
     }
 }
