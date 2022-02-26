@@ -1,7 +1,12 @@
 class ReverseString {
 
+    //bruteforce style
     String reverse(String inputString) {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        StringBuilder result = new StringBuilder();
+        for(int i = inputString.length() - 1; i >= 0; i--){
+            result.append(inputString.charAt(i));
+        }
+        return result.toString();
     }
   
 }
