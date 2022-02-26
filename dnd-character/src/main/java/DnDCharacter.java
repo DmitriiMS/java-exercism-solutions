@@ -22,8 +22,7 @@ class DnDCharacter {
 
     int ability() {
         return new Random(System.currentTimeMillis()).ints(1, 7)
-                .limit(4).boxed().sorted(Collections.reverseOrder())
-                .limit(3).reduce(0, Integer::sum);
+                .limit(4).sorted().skip(1).sum();
     }
 
     int modifier(int input) {
