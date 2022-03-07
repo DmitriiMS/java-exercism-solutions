@@ -2,18 +2,14 @@ import java.util.Arrays;
 
 class Matrix {
 
-    private int[][] matrix;
+    private final int[][] matrix;
 
     public Matrix(String matrixAsString) {
-String[] rows = matrixAsString.split("\n");
-        int rowLength = rows[0].split(" ").length;
-        matrix = new int[rows.length][];
-        for(int i = 0; i < rows.length; i++){
-            if(rows[i].split(" ").length != rowLength) {
-                throw new IllegalArgumentException("Strange row: aborting!");
-            }
-            matrix[i] = Arrays.stream(rows[i].split(" ")).mapToInt(Integer::parseInt).toArray();
-        }
+        matrix = Arrays.stream(matrixAsString.split("\n"))
+                .map(s -> Arrays.stream(s.split(" "))
+                        .mapToInt(Integer::parseInt)
+                        .toArray())
+                .toArray(int[][]::new);
     }
 
     public int[] getRow(int rowNumber) {
