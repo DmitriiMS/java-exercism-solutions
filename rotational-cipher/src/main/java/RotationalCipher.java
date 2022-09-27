@@ -7,34 +7,23 @@ class RotationalCipher {
     }
 
     String rotate(String data) {
-        char[] rotated = new char[data.length()];
+        char[] chars = data.toCharArray();
         for(int i = 0; i < data.length(); i++) {
-            char c = data.charAt(i);
-            if(c > 64 & c < 91) {
-                c = rotateUppercase(c);
+            if(chars[i] > 64 & chars[i] < 91) {
+                chars[i] = rotateAndCheck(chars[i], 90);
             }
-            if(c > 96 & c < 123) {
-                c = rotateLowercase(c);
+            if(chars[i] > 96 & chars[i] < 123) {
+                chars[i] = rotateAndCheck(chars[i], 122);
             }
-            rotated[i] = c;
         }
-        return new String(rotated);
+        return new String(chars);
     }
 
-    char rotateLowercase(char c) {
+    char rotateAndCheck(char c, int limit) {
         c += shiftKey;
-        if (c > 122) {
-            c = (char) (96 + (c - 122));
+        if (c > limit) {
+            c -= 26;
         }
         return c;
     }
-
-    char rotateUppercase(char c) {
-        c += shiftKey;
-        if (c > 90) {
-            c = (char) (64 + (c - 90));
-        }
-        return c;
-    }
-
 }
